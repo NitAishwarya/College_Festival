@@ -7,14 +7,21 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
+
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
+
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { userContext } from "../../Main/Main";
+import stylees from './Header.module.scss'
 
-function Header({ pages }: { pages: string[] }) {
+const HeaderComp = ({
+  pages,
+  changePage,
+}: {
+  pages: string[];
+  changePage: (page: string) => void;
+})  => {
   const { loginUser, userData, setLoginUser } = React.useContext(userContext);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -31,15 +38,15 @@ function Header({ pages }: { pages: string[] }) {
 
   const logout = () => {
     setTimeout(() => {
-      alert(` Confirm !!!! 
-                  Do you want ${userData} to logout`);
+      alert(`${userData} is logout`);
       setLoginUser({});
     }, 500);
   };
 
   return (
+    <div>
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container >
         <Toolbar disableGutters>
           <Typography
             variant="h6"
@@ -50,14 +57,13 @@ function Header({ pages }: { pages: string[] }) {
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
-
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            {`${loginUser.userType} - ${loginUser.username}`}
+            {`${loginUser.userType} - ${loginUser.name}`}
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -119,7 +125,7 @@ function Header({ pages }: { pages: string[] }) {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => changePage(page)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
@@ -135,6 +141,7 @@ function Header({ pages }: { pages: string[] }) {
         </Toolbar>
       </Container>
     </AppBar>
+    </div>
   );
 }
-export default Header;
+export default HeaderComp;

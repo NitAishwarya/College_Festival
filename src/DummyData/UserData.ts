@@ -7,7 +7,7 @@ export const allUsers: any = [
       password: "12345678",
       username: "student1",
       mobilenumber: 123456789,
-      email: "student1@gamil.com",
+      email: "student1@gmail.com",
       userType: 'student'
     },
     {
@@ -18,7 +18,7 @@ export const allUsers: any = [
       password: "12345678",
       username: "student2",
       mobilenumber: 123456781,
-      email: "student2@gamil.com",
+      email: "student2@gmail.com",
       userType: 'student'
     },
     {
@@ -30,7 +30,7 @@ export const allUsers: any = [
       username: "college1",
       College: "RGCER",
       mobilenumber: 123456783,
-      email: "college1@gamil.com",
+      email: "college1@gmail.com",
       userType: 'college'
     },
     {
@@ -38,7 +38,7 @@ export const allUsers: any = [
       password: "12345678",
       username: "admin",
       mobilenumber: 123456784,
-      email: "admin@gamil.com",
+      email: "admin@gmail.com",
       userType: 'admin'
     },
   ];

@@ -1,4 +1,4 @@
-import { SetStateAction, useContext, useEffect, useRef } from "react";
+import { SetStateAction, useContext, useEffect, useRef, useState } from "react";
 
 import Header from "../../Module/Header/Header";
 import { userContext } from "../../Main/Main";
@@ -6,87 +6,46 @@ import { Button } from "@mui/material";
 import CardComp from "../../Module/CardComp/CardComp";
 import ColgEvent from "../../Module/Event/ColgEvent/ColgEvent";
 import EventComp from "../../Module/Event/Event";
+import EventPage from "../EventPage/EventPage";
+import HeaderComp from "../../Module/Header/Header";
 
 const College = () => {
+
+  const [whichPage, setWhichPage] = useState('List of Events')
   const CollegePage = [
     "Home",
-    "Number of Events",
+    "List of Events",
     "Number of Students Participated",
     "Setting",
   ];
   const myRef = useRef<any>("");
-  const elem = document.getElementById("main-div");
+  const elem = document.getElementById("par-div");
   useEffect(() => {
     console.log("myRef", myRef?.current.style);
     console.log("elem", elem);
   }, [myRef]);
 
-  const contextData = useContext(userContext);
-  const changeBorder = () => {
-    if (myRef?.current) {
-      myRef.current.style.border = "3px solid green";
-    }
+const changePage=(page : string)=>{
+  setWhichPage(page);
+}
 
-    if (elem) {
-      elem.style.border = "3px solid blue";
-    }
-  };
 
-  const changeBorder2 = () => {
-    if (myRef?.current) {
-      myRef.current.style.border = "3px solid blue";
-    }
-  };
-  function setIsActiveStep(value: SetStateAction<boolean>): void {
-    throw new Error("Function not implemented.");
-  }
 
   return (
     <>
-      <Header pages={CollegePage} />
-      <br />
-      <ColgEvent />
+     <HeaderComp pages={CollegePage} changePage={changePage}/>
+     
+     {
+      whichPage !== 'List of Events' &&(
+        <>
+        <h1> List Of Events </h1>
+        </>
+      )
+     }
+     {
+      whichPage === 'List of Events' && <EventPage />
+     }
 
-      <>
-        <div
-          ref={myRef}
-          style={{
-            padding: "40px",
-            width: "718px",
-            justifyContent: "space-between",
-            display: "flex",
-          }}
-        >
-          <CardComp title="Numbers of Student Enrolled" count="145" />
-          <CardComp title="Number of Students Participated" count="105" />
-          <CardComp title="Events Timing" count="9:30pm to 7:30pm" />
-          <CardComp title="Number of Volunteers" count="50" />
-
-          {/* <EventComp /> */}
-        </div>
-        <br />
-        <Button
-          sx={{ marginLeft: "15px", marginRight: "15px" }}
-          variant="contained"
-          color="success"
-          onClick={() => {
-            changeBorder();
-          }}
-        >
-          {" "}
-          Green Border{" "}
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            changeBorder2();
-          }}
-        >
-          {" "}
-          Blue Border{" "}
-        </Button>
-      </>
     </>
   );
 };

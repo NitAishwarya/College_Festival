@@ -2,11 +2,11 @@ import { Box, Card, TextField, Button } from "@mui/material";
 import { useState } from "react";
 import styless from "../Auth.module.scss";
 import { allUsers } from "../../../DummyData/UserData";
+import Student from "../../features/Student/Student";
 const SingUp = ({
   setIsSignUp,
 }: {
   setIsSignUp: React.Dispatch<React.SetStateAction<boolean>>;
-
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,18 +16,26 @@ const SingUp = ({
   const [semister, setSemister] = useState("");
   const [branch, setBranch] = useState("");
 
-
-
-  const singUpFormSubmit = (e:any ) => {
-    console.log('singUpFormSubmit e',e)
-
-    
-  }
-
+  const singUpFormSubmit = (e: any) => {
+    console.log("singUpFormSubmit e", e);
+    allUsers.push({
+      name: { fullName },
+      branch: { branch },
+      college: { college },
+      semister: { semister },
+      password: { confirmPassword },
+      username: { email },
+      userType: "Student",
+    });
+    e.preventDefault();
+  };
 
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
-      <form className={styless["singupForm"]}  onSubmit={(e) => singUpFormSubmit(e)}>
+      <form
+        className={styless["singupForm"]}
+        onSubmit={(e) => singUpFormSubmit(e)}
+      >
         <h1>Sing Up Form</h1>
         <TextField
           id="outlined-basic"
@@ -44,7 +52,7 @@ const SingUp = ({
           onChange={(e) => setPassword(e.target.value)}
           variant="outlined"
         />
-<br />
+        <br />
         <TextField
           id="outlined-basic"
           label="Confirm Password"
@@ -52,7 +60,7 @@ const SingUp = ({
           onChange={(e) => setConfirmPassword(e.target.value)}
           variant="outlined"
         />
-<br />
+        <br />
         <TextField
           id="outlined-basic"
           label="Full Name"
@@ -60,7 +68,7 @@ const SingUp = ({
           onChange={(e) => setFullName(e.target.value)}
           variant="outlined"
         />
-<br />
+        <br />
         <TextField
           id="outlined-basic"
           label="College"
@@ -68,15 +76,15 @@ const SingUp = ({
           onChange={(e) => setCollege(e.target.value)}
           variant="outlined"
         />
-<br />
-<TextField
+        <br />
+        <TextField
           id="outlined-basic"
           label="Branch"
           value={branch}
           onChange={(e) => setBranch(e.target.value)}
           variant="outlined"
         />
-<br />
+        <br />
         <TextField
           id="outlined-basic"
           label="Semister"

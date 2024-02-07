@@ -1,19 +1,18 @@
-
-import StudEvent from "../../Module/Event/StudeEven/StudEvent";
-import Header from "../../Module/Header/Header";
-
+import { useState } from "react";
+import HeaderComp from "../../Module/Header/Header";
 
 const Student = () => {
-    const StudentPage = ["Home","Participated Events", "Dates", "Setting"];
+  const [whichPage, setWhichPage] = useState("users");
+  const StudentPage = ["Home", "Participated Events", "Dates", "Setting"];
 
-    return (
-        <div>
-            
-            <Header pages={StudentPage} />
-
-            <StudEvent />
-        </div>
-    )
+  const changePage = (page: string) => {
+    setWhichPage(page);
+  };
+  return (
+    <div>
+      <HeaderComp pages={StudentPage} changePage={changePage} />
+    </div>
+  );
 };
 
 export default Student;
