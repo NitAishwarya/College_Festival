@@ -25,7 +25,7 @@ const CardComp = ({ title, count }: { title: string; count: string; }) => {
           textAlign: "center",
           display: "flex",
           flexDirection: "column",
-          height: "200px",
+          height: "270px",
           justifyContent:"space-between",
 
          

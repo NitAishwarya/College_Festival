@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useRef } from "react";
+import stylees from './AlertComp.module.scss'
 
 const AlertComp = ({
   openStatus,
@@ -25,13 +26,13 @@ const AlertComp = ({
   };
 
   return (
-    <div>
-      <Snackbar open={openStatus} autoHideDuration={6000} onClose={handleClose}>
+    <div className={stylees['alert-div']}>
+      <Snackbar open={openStatus} autoHideDuration={4000}  onClose={handleClose} sx={{margin:'600px'}}>
         <Alert
           onClose={handleClose}
           severity="success"
           variant="filled"
-          sx={{ width: "100%" }}
+          sx={{ width: "100%"}}
         >
           {msg}
         </Alert>

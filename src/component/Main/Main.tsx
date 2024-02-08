@@ -25,22 +25,38 @@ const Main = () => {
     openStatus,
     setOpenStatus,
   };
+
+  const alertmsg =() =>{
+    if(loginUser.type == "admin")
+    {
+   return "Admin Logged in Sucessfully" 
+    }
+    if(loginUser.type == "student"){
+      return "Student Logged in Sucessfully" 
+    }
+    if(loginUser.type == "college"){
+      return "College Logged in Sucessfully" 
+    }
+    else{
+      return "";
+    }
+  }
   return (
-    <div className={stylees["main-div"]}>
+     <div className={stylees['main-div']}>
       <userContext.Provider value={providerObj}>
         {mainAlert &&
           ReactDOM.createPortal(
             <AlertComp
               openStatus={openStatus}
               setOpenStatus={setOpenStatus}
-              msg={'from login'}
+              msg={alertmsg()}
             />,
             mainAlert
           )}
         {Object.keys(loginUser).length === 0 && <Auth />}
-        {loginUser.userType == "admin" && <Admin />}
-        {loginUser.userType == "student" && <Student />}
-        {loginUser.userType == "college" && <College />}
+        {loginUser.type == "admin" && <Admin msg={alertmsg()}/>}
+        {loginUser.type == "student" && <Student msg={alertmsg()}/>}
+        {loginUser.type == "college" && <College msg={alertmsg()}/>}
       </userContext.Provider>
     </div>
   );

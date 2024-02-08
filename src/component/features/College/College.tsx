@@ -9,7 +9,9 @@ import EventComp from "../../Module/Event/Event";
 import EventPage from "../EventPage/EventPage";
 import HeaderComp from "../../Module/Header/Header";
 
-const College = () => {
+const College = ({msg} :{
+  msg :string
+}) => {
 
   const [whichPage, setWhichPage] = useState('List of Events')
   const CollegePage = [
